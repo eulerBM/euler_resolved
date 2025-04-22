@@ -28,7 +28,7 @@ public class ChatGPT {
               "content": [
                 {
                   "type": "text",
-                  "text": "Resolva ou descreva o conteúdo dessa imagem, por favor:"
+                  "text": "Resolva a questão que está sendo proposta para você:"
                 },
                 {
                   "type": "image_url",
