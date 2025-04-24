@@ -1,6 +1,7 @@
 package org.erbr.screen;
 
 import org.erbr.db.SQLiteConnection;
+import org.erbr.screen.ScreenSettings;
 import org.erbr.ias.ChatGPT;
 import org.json.JSONObject;
 
@@ -43,7 +44,7 @@ public class ScreenMain extends JFrame {
         JButton configBtn = new JButton("⚙️ Configurações");
         configBtn.setFont(new Font("Arial", Font.BOLD, 14));
         configBtn.setBackground(Color.LIGHT_GRAY);
-        configBtn.addActionListener(e -> OpenSettings());
+        configBtn.addActionListener(e -> ScreenSettings.open(this, chatArea, new String[]{apiKeyGPT, apiKeyDeepSeek, apiKeyGemini, apiKeyGrok}));
 
         chatArea = new JTextArea();
         chatArea.setEditable(false);
@@ -77,54 +78,6 @@ public class ScreenMain extends JFrame {
 
         setVisible(true);
     }
-
-    private void abrirConfiguracoes() {
-        JDialog configDialog = new JDialog(this, "⚙️ Configurações", true);
-        configDialog.setSize(500, 300);
-        configDialog.setLayout(new BorderLayout());
-        configDialog.setLocationRelativeTo(this);
-
-        JPanel painelCampos = new JPanel(new BorderLayout(10, 10));
-        painelCampos.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-
-        JPanel painelChaves = new JPanel(new GridLayout(4, 2, 10, 10));
-
-        JLabel labelApiGpt = new JLabel("🔑 API GPT:");
-        JTextField campoGpt = new JTextField(apiKeyGPT);
-
-        JLabel labelApiDeep = new JLabel("🔑 API DeepSeek:");
-        JTextField campoDeep = new JTextField(apiKeyDeepSeek);
-
-        JLabel labelApiGemini = new JLabel("🔑 API Gemini:");
-        JTextField campoGemini = new JTextField(apiKeyGemini);
-
-        JLabel labelApiGrok = new JLabel("🔑 API Grok:");
-        JTextField campoGrok = new JTextField(apiKeyGrok);
-
-        painelChaves.add(labelApiGpt); painelChaves.add(campoGpt);
-        painelChaves.add(labelApiDeep); painelChaves.add(campoDeep);
-        painelChaves.add(labelApiGemini); painelChaves.add(campoGemini);
-        painelChaves.add(labelApiGrok); painelChaves.add(campoGrok);
-
-        painelCampos.add(painelChaves, BorderLayout.CENTER);
-
-        JButton salvarBtn = new JButton("💾 Salvar");
-        salvarBtn.addActionListener(e -> {
-            apiKeyGPT = campoGpt.getText().trim();
-            apiKeyDeepSeek = campoDeep.getText().trim();
-            apiKeyGemini = campoGemini.getText().trim();
-            apiKeyGrok = campoGrok.getText().trim();
-
-            SQLiteConnection.saveApiKeys(apiKeyGPT, apiKeyDeepSeek, apiKeyGemini, apiKeyGrok);
-            chatArea.append("✅ Chaves de API salvas!\n");
-            configDialog.dispose();
-        });
-
-        configDialog.add(painelCampos, BorderLayout.CENTER);
-        configDialog.add(salvarBtn, BorderLayout.SOUTH);
-        configDialog.setVisible(true);
-    }
-
 
     private void iniciarSelecaoPrint() {
 
