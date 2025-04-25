@@ -1,7 +1,7 @@
 <h1>🖼️ Euler Resolved - Captura de Tela com Inteligência Artificial</h1>
 
 <p>
-  <strong>Euler Resolved</strong> é uma aplicação em Java com interface gráfica que permite ao usuário selecionar uma área da tela, capturá-la como imagem e enviá-la para uma IA (como o ChatGPT Vision) para análise e resposta automática.
+  <strong>Euler Resolved</strong> é uma aplicação em Java com interface gráfica que permite ao usuário selecionar uma área da tela, capturá-la como imagem e enviá-la para uma IA para análise e resposta automática.
 </p>
 
 ![Texto alternativo](images/photo_01.png)

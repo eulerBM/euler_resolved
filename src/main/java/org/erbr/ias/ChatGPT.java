@@ -13,11 +13,10 @@ public class ChatGPT {
     private static final String API_KEY = SQLiteConnection.getApiKeys()[0];
     private static final String API_URL = "https://api.openai.com/v1/chat/completions";
 
-    public static String enviarImagemParaIA(File imagem, String chave) throws IOException {
+    public static String enviarImagemParaIA(File imagem) throws IOException {
         // Converter imagem em base64
         byte[] imageBytes = Files.readAllBytes(imagem.toPath());
         String base64Image = Base64.getEncoder().encodeToString(imageBytes);
-        System.out.println(API_KEY);
 
         // Montar JSON para GPT-4 Vision
         String jsonInput = """

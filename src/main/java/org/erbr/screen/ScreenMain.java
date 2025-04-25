@@ -1,6 +1,7 @@
 package org.erbr.screen;
 
 import org.erbr.db.SQLiteConnection;
+import org.erbr.ias.MainIa;
 import org.erbr.screen.ScreenSettings;
 import org.erbr.ias.ChatGPT;
 import org.json.JSONObject;
@@ -123,25 +124,15 @@ public class ScreenMain extends JFrame {
             imagePanel.revalidate();
             imagePanel.repaint();
 
-            if (apiKeyGPT.isEmpty()) {
-                chatArea.append("⚠️ Chave da API não definida!\n");
-                return;
-            }
-
-            String respostaIa = ChatGPT.enviarImagemParaIA(novoArquivo, apiKeyGPT);
-            JSONObject json = new JSONObject(respostaIa);
-
-            String respostaIAFilter = json
-                    .getJSONArray("choices")
-                    .getJSONObject(0)
-                    .getJSONObject("message")
-                    .getString("content");
+            String respostaIAFilter = MainIa.analyzeImage(novoArquivo);
 
             chatArea.append("🤖 IA respondeu: \n" + respostaIAFilter + "\n");
 
         } catch (Exception ex) {
+
             ex.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Erro ao tirar print: " + ex.getMessage());
+            JOptionPane.showMessageDialog(this, "Erro: " + ex.getMessage());
+
         }
     }
 }
