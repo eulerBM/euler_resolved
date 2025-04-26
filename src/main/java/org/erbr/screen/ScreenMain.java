@@ -19,21 +19,14 @@ public class ScreenMain extends JFrame {
 
     private JTextArea chatArea;
     private JPanel imagePanel;
-    private String apiKeyGPT = "";
-    private String apiKeyDeepSeek = "";
-    private String apiKeyGemini = "";
-    private String apiKeyGrok = "";
     private File ultimoPrint = null;
     private boolean plusPressed = false;
     private boolean minusPressed = false;
+    private static String[] apiKeysIas = SQLiteConnection.getApiKeys();
 
     public ScreenMain() {
         // Cria a tabela caso não exista
         SQLiteConnection.createTable();
-
-        // Carrega a chave da API do banco de dados
-        apiKeyGPT = SQLiteConnection.getApiKeys()[0];
-        apiKeyDeepSeek = SQLiteConnection.getApiKeys()[1];
 
         setTitle("Euler Resolved");
         setSize(500, 500);
@@ -45,7 +38,7 @@ public class ScreenMain extends JFrame {
         JButton configBtn = new JButton("⚙️ Configurações");
         configBtn.setFont(new Font("Arial", Font.BOLD, 14));
         configBtn.setBackground(Color.LIGHT_GRAY);
-        configBtn.addActionListener(e -> ScreenSettings.open(this, chatArea, new String[]{apiKeyGPT, apiKeyDeepSeek, apiKeyGemini, apiKeyGrok}));
+        configBtn.addActionListener(e -> ScreenSettings.open(this, chatArea, apiKeysIas));
 
         chatArea = new JTextArea();
         chatArea.setEditable(false);
