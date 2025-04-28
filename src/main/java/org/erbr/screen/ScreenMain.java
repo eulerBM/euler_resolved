@@ -63,11 +63,14 @@ public class ScreenMain extends JFrame {
                     minusPressed = false;
                 }
             }
+
             if (e.getID() == KeyEvent.KEY_RELEASED) {
                 if (e.getKeyChar() == '+') plusPressed = false;
                 if (e.getKeyChar() == '-') minusPressed = false;
             }
+
             return false;
+
         });
 
         setVisible(true);
