@@ -58,7 +58,7 @@ public class ScreenMain extends JFrame {
                 if (e.getKeyChar() == '+') plusPressed = true;
                 if (e.getKeyChar() == '-') minusPressed = true;
                 if (plusPressed && minusPressed) {
-                    iniciarSelecaoPrint();
+                    startSelectionPrint();
                     plusPressed = false;
                     minusPressed = false;
                 }
@@ -76,7 +76,7 @@ public class ScreenMain extends JFrame {
         setVisible(true);
     }
 
-    private void iniciarSelecaoPrint() {
+    private void startSelectionPrint() {
 
         setVisible(false);
         try {
@@ -84,12 +84,12 @@ public class ScreenMain extends JFrame {
         } catch (InterruptedException ignored) {}
 
         new AreaSelector(retanguloSelecionado -> {
-            capturarArea(retanguloSelecionado);
+            captureArea(retanguloSelecionado);
             setVisible(true);
         });
     }
 
-    private void capturarArea(Rectangle area) {
+    private void captureArea(Rectangle area) {
         try {
             File pastaPrints = new File("prints");
             if (!pastaPrints.exists()) {
