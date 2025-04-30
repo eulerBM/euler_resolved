@@ -2,18 +2,12 @@ package org.erbr.screen;
 
 import org.erbr.db.SQLiteConnection;
 import org.erbr.ias.MainIa;
-import org.erbr.screen.ScreenSettings;
-import org.erbr.ias.ChatGPT;
-import org.json.JSONObject;
+import org.erbr.utils.Capture;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
 import java.io.File;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class ScreenMain extends JFrame {
 
@@ -90,29 +84,12 @@ public class ScreenMain extends JFrame {
     }
 
     private void captureArea(Rectangle area) {
+
         try {
-            File pastaPrints = new File("prints");
-            if (!pastaPrints.exists()) {
-                pastaPrints.mkdirs();
-            }
 
-            File[] arquivos = pastaPrints.listFiles();
-            if (arquivos != null) {
-                for (File arq : arquivos) {
-                    arq.delete();
-                }
-            }
+            var novoArquivo = Capture.captureScreenArea(area);
 
-            Robot robot = new Robot();
-            BufferedImage image = robot.createScreenCapture(area);
-
-            String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
-            File novoArquivo = new File(pastaPrints, "print_" + timestamp + ".png");
-            ImageIO.write(image, "png", novoArquivo);
-
-            ultimoPrint = novoArquivo;
-
-            Image resizedImg = image.getScaledInstance(200, 150, Image.SCALE_SMOOTH);
+            Image resizedImg = novoArquivo.getImage().getScaledInstance(200, 150, Image.SCALE_SMOOTH);
             ImageIcon imageIcon = new ImageIcon(resizedImg);
 
             imagePanel.removeAll();
@@ -120,7 +97,7 @@ public class ScreenMain extends JFrame {
             imagePanel.revalidate();
             imagePanel.repaint();
 
-            String respostaIAFilter = MainIa.analyzeImage(novoArquivo);
+            String respostaIAFilter = MainIa.analyzeImage(novoArquivo.getFile());
 
             chatArea.append("🤖 IA respondeu: \n" + respostaIAFilter + "\n");
 
