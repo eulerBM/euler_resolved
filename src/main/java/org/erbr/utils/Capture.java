@@ -20,7 +20,13 @@ public class Capture {
             directory.mkdirs();
         }
 
-        Files.delete(directory.toPath());
+        File[] photos = directory.listFiles();
+
+        if (photos.length > 0) {
+            for (File photo : photos) {
+                photo.delete();
+            }
+        }
 
         String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
         File outputFile = new File(directory, "print_" + timestamp + ".png");
