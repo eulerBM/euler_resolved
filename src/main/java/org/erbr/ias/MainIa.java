@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class MainIa {
 
-    private static final String API_KEY_GPT = SQLiteConnection.getApiKeys()[0];
+    private static String API_KEY_GPT = SQLiteConnection.getApiKeyGPT();
 
 
     public static String analyzeImage(File image) throws IOException {

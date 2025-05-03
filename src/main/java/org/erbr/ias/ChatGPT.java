@@ -10,7 +10,7 @@ import java.util.Base64;
 
 public class ChatGPT {
 
-    private static final String API_KEY = SQLiteConnection.getApiKeys()[0];
+    private static String API_KEY = SQLiteConnection.getApiKeyGPT();
     private static final String API_URL = "https://api.openai.com/v1/chat/completions";
 
     public static String enviarImagemParaIA(File imagem) throws IOException {

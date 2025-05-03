@@ -16,7 +16,7 @@ public class ScreenMain extends JFrame {
     private File ultimoPrint = null;
     private boolean plusPressed = false;
     private boolean minusPressed = false;
-    private static String[] apiKeysIas = SQLiteConnection.getApiKeys();
+    private static String apiKeysIas = SQLiteConnection.getApiKeyGPT();
 
     public ScreenMain() {
         // Cria a tabela caso não exista

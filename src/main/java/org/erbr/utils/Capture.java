@@ -5,7 +5,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -14,13 +13,12 @@ public class Capture {
     public static CaptureResult captureScreenArea(Rectangle area) throws AWTException, IOException {
         Robot robot = new Robot();
         BufferedImage image = robot.createScreenCapture(area);
-
         File directory = new File("prints");
+        File[] photos = directory.listFiles();
+
         if (!directory.exists()) {
             directory.mkdirs();
         }
-
-        File[] photos = directory.listFiles();
 
         if (photos.length > 0) {
             for (File photo : photos) {
