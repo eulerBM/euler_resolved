@@ -28,7 +28,9 @@ public class ScreenSettings {
 
         salvarBtn.addActionListener(e -> {
             SQLiteConnection.saveApiKeyGPT(
+
                     campoGpt.getText().trim()
+
             );
             chatArea.append("✅ Chaves de API salvas!\n");
             configDialog.dispose();
