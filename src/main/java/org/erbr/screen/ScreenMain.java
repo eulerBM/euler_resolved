@@ -7,19 +7,17 @@ import org.erbr.utils.Capture;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.io.File;
 
 public class ScreenMain extends JFrame {
 
     private JTextArea chatArea;
     private JPanel imagePanel;
-    private File ultimoPrint = null;
     private boolean plusPressed = false;
     private boolean minusPressed = false;
     private static String apiKeysIas = SQLiteConnection.getApiKeyGPT();
 
     public ScreenMain() {
-        // Cria a tabela caso não exista
+
         SQLiteConnection.createTable();
 
         setTitle("Euler Resolved");
@@ -27,8 +25,6 @@ public class ScreenMain extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
-
-        // Botão de Configurações
         JButton configBtn = new JButton("⚙️ Configurações");
         configBtn.setFont(new Font("Arial", Font.BOLD, 14));
         configBtn.setBackground(Color.LIGHT_GRAY);
