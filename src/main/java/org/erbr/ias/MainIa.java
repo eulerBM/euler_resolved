@@ -10,7 +10,6 @@ public class MainIa {
 
     private static String API_KEY_GPT = SQLiteConnection.getApiKeyGPT();
 
-
     public static String analyzeImage(File image) throws IOException {
 
         if (!(API_KEY_GPT == null)){

@@ -14,11 +14,10 @@ public class ChatGPT {
     private static final String API_URL = "https://api.openai.com/v1/chat/completions";
 
     public static String enviarImagemParaIA(File imagem) throws IOException {
-        // Converter imagem em base64
+
         byte[] imageBytes = Files.readAllBytes(imagem.toPath());
         String base64Image = Base64.getEncoder().encodeToString(imageBytes);
 
-        // Montar JSON para GPT-4 Vision
         String jsonInput = """
         {
           "model": "gpt-4o-mini",
@@ -43,7 +42,6 @@ public class ChatGPT {
         }
         """.formatted(base64Image);
 
-        // Conexão HTTP
         URL url = new URL(API_URL);
         HttpURLConnection conexao = (HttpURLConnection) url.openConnection();
         conexao.setRequestMethod("POST");

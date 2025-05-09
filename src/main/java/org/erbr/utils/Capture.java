@@ -11,6 +11,7 @@ import java.time.format.DateTimeFormatter;
 public class Capture {
 
     public static CaptureResult captureScreenArea(Rectangle area) throws AWTException, IOException {
+
         Robot robot = new Robot();
         BufferedImage image = robot.createScreenCapture(area);
         File directory = new File("prints");
@@ -19,13 +20,11 @@ public class Capture {
         if (!directory.exists()) {
             directory.mkdirs();
         }
-
         if (photos.length > 0) {
             for (File photo : photos) {
                 photo.delete();
             }
         }
-
         String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
         File outputFile = new File(directory, "print_" + timestamp + ".png");
         ImageIO.write(image, "png", outputFile);

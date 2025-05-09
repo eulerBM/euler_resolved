@@ -5,12 +5,10 @@ import java.sql.*;
 public class SQLiteConnection {
     private static final String URL = "jdbc:sqlite:keys-ias.db";
 
-    // Cria uma conexão com o banco de dados SQLite
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(URL);
     }
 
-    // Cria a tabela de configurações (se não existir)
     public static void createTable() {
         String sql = "CREATE TABLE IF NOT EXISTS config (" +
                 "id INTEGER PRIMARY KEY, " +
@@ -24,7 +22,6 @@ public class SQLiteConnection {
         }
     }
 
-    // Insere ou atualiza a chave da API do GPT
     public static void saveApiKeyGPT(String apiKeyGPT) {
         String sql = "INSERT INTO config (id, apiKeyGPT) " +
                 "VALUES (1, ?) " +
@@ -40,7 +37,6 @@ public class SQLiteConnection {
         }
     }
 
-    // Recupera a chave da API do GPT do banco de dados
     public static String getApiKeyGPT() {
         String sql = "SELECT apiKeyGPT FROM config WHERE id = 1";
 
