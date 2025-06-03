@@ -3,7 +3,6 @@
 <p>
   <strong>Euler Resolved</strong> é uma aplicação em Java com interface gráfica que permite ao usuário selecionar uma área da tela, capturá-la como imagem e enviá-la para uma IA para análise e resposta automática.
 </p>
-
 ![Texto alternativo](images/photo_01.png)
 
 <h2>✨ Funcionalidades</h2>
