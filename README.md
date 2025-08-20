@@ -8,6 +8,7 @@
 
 <h2>✨ Funcionalidades</h2>
 
+
 <ul>
   <li>Seleção livre da área da tela para captura</li>
   <li>Miniatura do print exibida na interface</li>
